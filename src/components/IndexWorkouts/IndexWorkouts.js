@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 
 import { indexAllWorkouts } from './../../api/workouts'
@@ -10,6 +11,12 @@ class IndexAll extends Component {
     this.state = {
       workouts: []
     }
+  }
+
+  handleSearchOne = (id, event) => {
+    const { history } = this.props
+
+    history.push(`/workouts/${id}`)
   }
 
   componentDidMount () {
@@ -37,13 +44,18 @@ class IndexAll extends Component {
     let workoutJsx
     console.log('this is workouts before map: ', this.state.workouts)
     const { workouts } = this.state
+
     if (!workouts) {
       // return 'Loading...'
       workoutJsx = <img style={{ width: '80%' }} src="https://media.giphy.com/media/11T6LuIxeHtJJu/giphy.gif" alt="loading gif" />
     }
 
     workoutJsx = workouts.map(workout => (
-      <Card key={workout.id} className='index-bg' style={{ margin: '10px', padding: '10px', width: '100%', marginTop: '10px' }}>
+      <Card key={workout.id}
+        onClick={(event) => {
+          this.handleSearchOne(workout.id, event)
+        }}
+        className='index-bg' style={{ margin: '10px', padding: '10px', width: '100%', marginTop: '10px' }}>
         <Card.Body>
           <Card.Title>{workout.title}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">{workout.author}</Card.Subtitle>
@@ -68,4 +80,4 @@ class IndexAll extends Component {
   }
 }
 
-export default IndexAll
+export default withRouter(IndexAll)

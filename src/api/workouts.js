@@ -36,18 +36,6 @@ export const indexMyWorkouts = user => {
   })
 }
 
-// UpperBody Workouts
-
-// LowerBody Workouts
-
-// CoreWorkouts
-
-// CardioWorkouts
-
-// FullBody Workouts
-
-// Recover Workouts
-
 // Show One Workout
 export const showWorkout = (id, user) => {
   return axios({

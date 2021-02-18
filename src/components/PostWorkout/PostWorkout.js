@@ -39,7 +39,7 @@ class CreateAWorkout extends Component {
     const { user, msgAlert } = this.props
     const { workout } = this.state
 
-    // console.log('this is the workout', workout)
+    console.log('this is the workout', workout)
     createWorkout(workout, user)
 
       .then(res => {
@@ -62,6 +62,10 @@ class CreateAWorkout extends Component {
     if (createId) {
       return <Redirect to={`/workouts/${createId}/`} />
     }
+
+    // if (createId) {
+    //   return <Redirect to={'/index-all'} />
+    // }
 
     return (
       <div>

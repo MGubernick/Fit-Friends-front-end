@@ -49,6 +49,7 @@ const WorkoutForm = ({ post, handleSubmit, handleChange }) => {
               as="select"
               name="difficulty"
               onChange={handleChange}>
+              <option>Scale of 1 (too easy) - 5 (brutal!)</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -63,6 +64,7 @@ const WorkoutForm = ({ post, handleSubmit, handleChange }) => {
               as="select"
               name="category"
               onChange={handleChange}>
+              <option>Pick A Category...</option>
               <option>Upper Body</option>
               <option>Lower Body</option>
               <option>Full Body</option>
