@@ -28,10 +28,10 @@ const WorkoutForm = ({ post, handleSubmit, handleChange }) => {
       backdrop="static"
       keyboard={false}
     >
-      <Modal.Header style={{ backgroundColor: 'grey' }} closeButton>
+      <Modal.Header className='modal-bg' closeButton>
         <Modal.Title>Lets Get Started!</Modal.Title>
       </Modal.Header>
-      <Modal.Body style={{ backgroundColor: 'grey' }}>
+      <Modal.Body className='modal-bg'>
         <Form onSubmit={handleSubmit}>
           <Form.Group controlId="formBasicTitle">
             <Form.Label>Title</Form.Label>

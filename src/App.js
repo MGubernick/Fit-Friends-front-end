@@ -12,6 +12,7 @@ import ChangePassword from './components/ChangePassword/ChangePassword'
 
 // import workout componenets
 import CreateWorkout from './components/PostWorkout/PostWorkout'
+import IndexAll from './components/IndexWorkouts/IndexWorkouts'
 
 class App extends Component {
   constructor (props) {
@@ -70,6 +71,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/create-a-workout' render={() => (
             <CreateWorkout msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/index-all' render={() => (
+            <IndexAll msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>

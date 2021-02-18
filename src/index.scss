@@ -1,1 +1,25 @@
+$primary: #252525;
+$secondary: #af0404;
+
+
 @import '~bootstrap/scss/bootstrap';
+
+$body-bg: #414141;
+$modal-bg: #347474;
+$index-bg: #464d54;
+$white: #fff;
+$yellow: #d3e427;
+
+
+body {
+  background-color: $body-bg;
+  color: $yellow;
+}
+
+.modal-bg {
+  background-color: $modal-bg;
+}
+
+.index-bg {
+  background-color: $index-bg;
+}

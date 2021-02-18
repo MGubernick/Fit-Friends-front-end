@@ -10,7 +10,7 @@ class CreateAWorkout extends Component {
     super(props)
 
     const { user } = this.props
-    console.log('this is user at create', user)
+    // console.log('this is user at create', user)
     this.state = {
       workout: {
         title: '',
@@ -39,7 +39,7 @@ class CreateAWorkout extends Component {
     const { user, msgAlert } = this.props
     const { workout } = this.state
 
-    console.log('this is the workout', workout)
+    // console.log('this is the workout', workout)
     createWorkout(workout, user)
 
       .then(res => {
