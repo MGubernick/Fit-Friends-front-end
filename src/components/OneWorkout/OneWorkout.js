@@ -8,7 +8,7 @@ import { showWorkout, deleteWorkout } from '../../api/workouts'
 // import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 // import Modal from 'react-bootstrap/Modal'
-// import Card from 'react-bootstrap/Card'
+import Card from 'react-bootstrap/Card'
 
 class OneWorkout extends Component {
   constructor (props) {
@@ -98,33 +98,41 @@ render () {
 
   if (userId !== authorId) {
     workoutDisplay = (
-      <div className="index-bg">
-        <h3>{workout.title}</h3>
-        <h5>Author: {workout.author}</h5>
-        <h6><small>Category: <strong>{workout.category}</strong></small></h6>
-        <h6><small>Difficulty: <strong>{workout.difficulty}</strong></small></h6>
-        <div style={{ border: '1px solid #d3e427', margin: '10px', padding: '10px' }}>
-          <h6 style={{ whiteSpace: 'pre-wrap' }}>
-            {workout.description}
-          </h6>
-        </div>
-      </div>
+      <Card key={workout.id}
+        className="index-bg"
+        style={{ borderRadius: '7px', boxShadow: ' -.3px .5px 0px .5px grey', display: 'flex', marginLeft: '5px', marginRight: '5px', marginBottom: '20px', padding: '10px', width: '800px' }} >
+        <Card.Title >{workout.title}</Card.Title>
+        <Card.Body className="card-body" style={{ display: 'flex', flexDirection: 'row', overflow: 'auto' }}>
+          <div style={{ margin: '30px' }}>
+            <Card.Title style={{ fontSize: '30px' }}>Author: {workout.author}</Card.Title>
+            <Card.Text style={{ fontStyle: 'italic', fontSize: '15px' }}><small>Category: <strong>{workout.category}</strong></small></Card.Text>
+            <Card.Text style={{ fontStyle: 'italic', fontSize: '15px' }}><small>Difficulty: <strong>{workout.difficulty}</strong></small></Card.Text>
+            <Card.Text style={{ whiteSpace: 'pre-wrap' }}>
+              {workout.description}
+            </Card.Text>
+          </div>
+        </Card.Body>
+      </Card>
     )
   } else {
     workoutDisplay = (
-      <div>
-        <h3>{workout.title}</h3>
-        <h5>Author: {workout.author}</h5>
-        <h6><small><strong>Category: {workout.category}</strong></small></h6>
-        <h6><small>Difficulty: {workout.difficulty}</small></h6>
-        <div style={{ border: '1px solid #d3e427', margin: '10px', padding: '10px' }}>
-          <h6 style={{ whiteSpace: 'pre-wrap' }}>
-            {workout.description}
-          </h6>
-        </div>
+      <Card key={workout.id}
+        className="index-bg"
+        style={{ borderRadius: '7px', boxShadow: ' -.3px .5px 0px .5px grey', display: 'flex', marginLeft: '5px', marginRight: '5px', marginBottom: '20px', padding: '10px', width: '800px' }} >
+        <Card.Title >{workout.title}</Card.Title>
+        <Card.Body className="card-body" style={{ display: 'flex', flexDirection: 'row', overflow: 'auto' }}>
+          <div style={{ margin: '30px' }}>
+            <Card.Title style={{ fontSize: '30px' }}>Author: {workout.author}</Card.Title>
+            <Card.Text style={{ fontStyle: 'italic', fontSize: '15px' }}><small>Category: <strong>{workout.category}</strong></small></Card.Text>
+            <Card.Text style={{ fontStyle: 'italic', fontSize: '15px' }}><small>Difficulty: <strong>{workout.difficulty}</strong></small></Card.Text>
+            <Card.Text style={{ whiteSpace: 'pre-wrap' }}>
+              {workout.description}
+            </Card.Text>
+          </div>
+        </Card.Body>
         <Button onClick={this.updateWorkoutClicked} style={{ backgrounColor: '#d3e427' }}>Update</Button>
         <Button style={{ marginLeft: '10px' }} onClick={this.onDeleteWorkout} variant="outline-secondary">Delete</Button>
-      </div>
+      </Card>
     )
   }
 

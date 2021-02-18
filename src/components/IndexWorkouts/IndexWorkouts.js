@@ -55,23 +55,26 @@ class IndexAll extends Component {
         onClick={(event) => {
           this.handleSearchOne(workout.id, event)
         }}
-        className='index-bg' style={{ margin: '10px', padding: '10px', width: '100%', marginTop: '10px' }}>
+        className='index-bg' style={{ height: '300px', margin: '10px', padding: '10px', width: '300px', marginTop: '10px' }}>
         <Card.Body>
           <Card.Title>{workout.title}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">{workout.author}</Card.Subtitle>
           <Card.Text>Category: {workout.category}</Card.Text>
           <Card.Text>Difficulty Level: {workout.difficulty}</Card.Text>
+          <div>
+            <Card.Img src={'https://imgur.com/9LMuOGJ.png'} style={{ alignSelf: 'center', height: '60px', width: '60px' }} alt='image of a muscle'/>
+          </div>
           {/* <Card.Link href={`#workouts/${workout._id}`}>See Full Post</Card.Link> */}
         </Card.Body>
       </Card>
     ))
 
     return (
-      <div>
+      <div style={{ alignContent: 'center', display: 'flex', flexDirection: 'column' }}>
         <h2>Lets take a look at those workouts!</h2>
         <p><small>(click on a workout to see full details)</small></p>
         <ul>
-          <div style={{ whiteSpace: 'pre-wrap' }}>
+          <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', margin: '10px', whiteSpace: 'pre-wrap' }}>
             {workoutJsx.reverse()}
           </div>
         </ul>
