@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 
-// import { indexAllWorkouts } from './../../api/workouts'
-
 class BrowseCategory extends Component {
   constructor (props) {
     super(props)
@@ -19,25 +17,41 @@ class BrowseCategory extends Component {
     history.push(`/workouts/${id}`)
   }
 
-  // const { msgAlert, user } = this.props
-  //
-  // indexAllWorkouts(user)
-  //   .then(res => {
-  //     // console.log('This is res at indexAllWorkouts', res)
-  //     this.setState({ workouts: res.data.workouts })
-  //     // console.log('This is workouts at indexAllWorkouts', this.state.workouts)
-  //   })
-  //   .then(() => msgAlert({
-  //     message: 'Check it out! Here are all of the workouts!',
-  //     variant: 'success'
-  //   }))
-  //   .catch(error => {
-  //     msgAlert({
-  //       heading: 'Index Of All The Workouts Failed',
-  //       message: `could not load workouts: ${error.message}`,
-  //       variant: 'danger'
-  //     })
-  //   })
+  onUpperBodyClick = (event) => {
+    const { history } = this.props
+
+    history.push('/upper-body-workouts')
+  }
+
+  onLowerBodyClick = (event) => {
+    const { history } = this.props
+
+    history.push('/lower-body-workouts')
+  }
+
+  onCardioClick = (event) => {
+    const { history } = this.props
+
+    history.push('/cardio-workouts')
+  }
+
+  onCoreClick = (event) => {
+    const { history } = this.props
+
+    history.push('/core-workouts')
+  }
+
+  onFullBodyClick = (event) => {
+    const { history } = this.props
+
+    history.push('/full-body-workouts')
+  }
+
+  onRecoveryClick = (event) => {
+    const { history } = this.props
+
+    history.push('/recovery-workouts')
+  }
 
   render () {
     return (

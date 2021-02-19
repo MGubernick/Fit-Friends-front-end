@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Redirect } from 'react-router-dom'
 import WorkoutForm from '../WorkoutForm/WorkoutForm'
 
-// import { createPost } from '../../../api/posts'
 import { createWorkout } from '../../api/workouts'
 
 class CreateAWorkout extends Component {

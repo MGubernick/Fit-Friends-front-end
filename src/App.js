@@ -16,6 +16,13 @@ import IndexAll from './components/IndexWorkouts/IndexWorkouts'
 import MyIndex from './components/MyIndex/MyIndex'
 import OneWorkout from './components/OneWorkout/OneWorkout'
 import BrowseCategory from './components/Browse/Browse'
+import UpdateWorkout from './components/UpdateWorkout/UpdateWorkout'
+import UpperBodyIndex from './components/Category/UpperBodyIndex/UpperBodyIndex'
+import LowerBodyIndex from './components/Category/LowerBodyIndex/LowerBodyIndex'
+import FullBodyIndex from './components/Category/FullBodyIndex/FullBodyIndex'
+import Cardio from './components/Category/Cardio/Cardio'
+import CoreIndex from './components/Category/CoreIndex/CoreIndex'
+import RecoveryIndex from './components/Category/RecoveryIndex/RecoveryIndex'
 
 class App extends Component {
   constructor (props) {
@@ -86,6 +93,27 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/browser' render={() => (
             <BrowseCategory msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/update-workout/:id' render={() => (
+            <UpdateWorkout msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/upper-body-workouts' render={() => (
+            <UpperBodyIndex msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/lower-body-workouts' render={() => (
+            <LowerBodyIndex msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/cardio-workouts' render={() => (
+            <Cardio msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/core-workouts' render={() => (
+            <CoreIndex msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/full-body-workouts' render={() => (
+            <FullBodyIndex msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/recovery-workouts' render={() => (
+            <RecoveryIndex msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>

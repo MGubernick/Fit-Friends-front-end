@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
 // import { withRouter } from 'react-router-dom'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 
-const WorkoutForm = ({ workout, handleSubmit, handleChange }) => {
+const UpdateForm = ({ workout, handleSubmit, handleChange }) => {
   const [showCreateModal, setShowCreateModal] = useState(true)
   const [backHome, setBackHome] = useState(false)
 
@@ -17,7 +17,7 @@ const WorkoutForm = ({ workout, handleSubmit, handleChange }) => {
 
   if (backHome) {
     return (
-      <Redirect to={'/browser'} />
+      <Redirect to={`/workouts/${workout.id}`} />
     )
   }
 
@@ -29,7 +29,7 @@ const WorkoutForm = ({ workout, handleSubmit, handleChange }) => {
       keyboard={false}
     >
       <Modal.Header className='modal-bg' closeButton>
-        <Modal.Title>Lets Get Started!</Modal.Title>
+        <Modal.Title>Change Is Good, Keep It Fresh!</Modal.Title>
       </Modal.Header>
       <Modal.Body className='modal-bg'>
         <Form onSubmit={handleSubmit}>
@@ -99,5 +99,5 @@ const WorkoutForm = ({ workout, handleSubmit, handleChange }) => {
   )
 }
 
-// export default withRouter(WorkoutForm)
-export default WorkoutForm
+export default withRouter(UpdateForm)
+// export default UpdateForm
