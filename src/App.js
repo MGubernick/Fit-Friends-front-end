@@ -13,7 +13,9 @@ import ChangePassword from './components/ChangePassword/ChangePassword'
 // import workout componenets
 import CreateWorkout from './components/PostWorkout/PostWorkout'
 import IndexAll from './components/IndexWorkouts/IndexWorkouts'
+import MyIndex from './components/MyIndex/MyIndex'
 import OneWorkout from './components/OneWorkout/OneWorkout'
+import BrowseCategory from './components/Browse/Browse'
 
 class App extends Component {
   constructor (props) {
@@ -76,8 +78,14 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/index-all' render={() => (
             <IndexAll msgAlert={this.msgAlert} user={user} />
           )} />
+          <AuthenticatedRoute user={user} path='/my-index' render={() => (
+            <MyIndex msgAlert={this.msgAlert} user={user} />
+          )} />
           <AuthenticatedRoute user={user} path='/workouts/:id' render={() => (
             <OneWorkout msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/browser' render={() => (
+            <BrowseCategory msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>

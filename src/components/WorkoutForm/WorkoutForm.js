@@ -17,7 +17,7 @@ const WorkoutForm = ({ post, handleSubmit, handleChange }) => {
 
   if (backHome) {
     return (
-      <Redirect to={'/'} />
+      <Redirect to={'/browser'} />
     )
   }
 

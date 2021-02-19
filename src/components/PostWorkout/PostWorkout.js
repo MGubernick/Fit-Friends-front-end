@@ -14,7 +14,7 @@ class CreateAWorkout extends Component {
     this.state = {
       workout: {
         title: '',
-        author: user.user_name,
+        author: user,
         difficulty: null,
         category: '',
         description: ''
@@ -39,11 +39,12 @@ class CreateAWorkout extends Component {
     const { user, msgAlert } = this.props
     const { workout } = this.state
 
-    console.log('this is the workout', workout)
     createWorkout(workout, user)
 
       .then(res => {
+        // console.log('this is response from api', res)
         this.setState({ createId: res.data.workout.id })
+        // console.log('this is state after createWorkout', this.state)
         return res
       })
       .then(res => msgAlert({

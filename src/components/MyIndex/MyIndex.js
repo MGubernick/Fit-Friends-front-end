@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 
-import { indexAllWorkouts } from './../../api/workouts'
+import { indexMyWorkouts } from './../../api/workouts'
 
-class IndexAll extends Component {
+class MyIndex extends Component {
   constructor (props) {
     super(props)
 
@@ -22,19 +22,19 @@ class IndexAll extends Component {
   componentDidMount () {
     const { msgAlert, user } = this.props
 
-    indexAllWorkouts(user)
+    indexMyWorkouts(user)
       .then(res => {
         // console.log('This is res at indexAllWorkouts', res)
         this.setState({ workouts: res.data.workouts })
         // console.log('This is workouts at indexAllWorkouts', this.state.workouts)
       })
       .then(() => msgAlert({
-        message: 'Check it out! Here are all of the workouts!',
+        message: 'Check it out! Here are all of your workouts!',
         variant: 'success'
       }))
       .catch(error => {
         msgAlert({
-          heading: 'Index Of All The Workouts Failed',
+          heading: 'Index Of All Your Workouts Failed',
           message: `could not load workouts: ${error.message}`,
           variant: 'danger'
         })
@@ -74,7 +74,7 @@ class IndexAll extends Component {
     return (
       <div style={{ alignContent: 'center', display: 'flex', flexDirection: 'column' }}>
         <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-          <h2>Lets take a look at those workouts!</h2>
+          <h2>Here are your workouts!</h2>
           <p><small>(click on a workout to see full details)</small></p>
         </div>
         <ul>
@@ -87,4 +87,4 @@ class IndexAll extends Component {
   }
 }
 
-export default withRouter(IndexAll)
+export default withRouter(MyIndex)

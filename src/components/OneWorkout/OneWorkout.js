@@ -90,17 +90,17 @@ render () {
   }
 
   console.log('this is user before userId set', user)
-  const userId = user.id
-  console.log('this is author before authorId set', workout.author)
-  const authorId = workout.author.id
+  const userName = user.user_name
+  console.log('this is workout before authorId set', workout)
+  const authorName = workout.author
 
   let workoutDisplay
 
-  if (userId !== authorId) {
+  if (userName !== authorName) {
     workoutDisplay = (
       <Card key={workout.id}
         className="index-bg"
-        style={{ borderRadius: '7px', boxShadow: ' -.3px .5px 0px .5px grey', display: 'flex', marginLeft: '5px', marginRight: '5px', marginBottom: '20px', padding: '10px', width: '800px' }} >
+        style={{ borderRadius: '12px', boxShadow: ' -.3px .5px 0px .5px grey', display: 'flex', marginLeft: '5px', marginRight: '5px', marginBottom: '20px', padding: '10px', width: '700px' }} >
         <Card.Title >{workout.title}</Card.Title>
         <Card.Body className="card-body" style={{ display: 'flex', flexDirection: 'row', overflow: 'auto' }}>
           <div style={{ margin: '30px' }}>
@@ -118,27 +118,32 @@ render () {
     workoutDisplay = (
       <Card key={workout.id}
         className="index-bg"
-        style={{ borderRadius: '7px', boxShadow: ' -.3px .5px 0px .5px grey', display: 'flex', marginLeft: '5px', marginRight: '5px', marginBottom: '20px', padding: '10px', width: '800px' }} >
-        <Card.Title >{workout.title}</Card.Title>
+        style={{ border: '1px solid #d3e427', borderRadius: '12px', boxShadow: ' -.3px .5px 0px .5px grey', display: 'flex', marginLeft: '5px', marginRight: '5px', marginBottom: '20px', padding: '10px', width: '800px' }} >
         <Card.Body className="card-body" style={{ display: 'flex', flexDirection: 'row', overflow: 'auto' }}>
           <div style={{ margin: '30px' }}>
-            <Card.Title style={{ fontSize: '30px' }}>Author: {workout.author}</Card.Title>
+            <Card.Title style={{ fontSize: '30px' }}>{workout.title}</Card.Title>
+            <Card.Title >Author: {workout.author}</Card.Title>
             <Card.Text style={{ fontStyle: 'italic', fontSize: '15px' }}><small>Category: <strong>{workout.category}</strong></small></Card.Text>
             <Card.Text style={{ fontStyle: 'italic', fontSize: '15px' }}><small>Difficulty: <strong>{workout.difficulty}</strong></small></Card.Text>
             <Card.Text style={{ whiteSpace: 'pre-wrap' }}>
               {workout.description}
             </Card.Text>
+            <Button onClick={this.updateWorkoutClicked} style={{ borderColor: '#d3e427' }}>Update</Button>
+            <Button style={{ marginLeft: '10px' }} onClick={this.onDeleteWorkout} variant="secondary">Delete</Button>
           </div>
         </Card.Body>
-        <Button onClick={this.updateWorkoutClicked} style={{ backgrounColor: '#d3e427' }}>Update</Button>
-        <Button style={{ marginLeft: '10px' }} onClick={this.onDeleteWorkout} variant="outline-secondary">Delete</Button>
       </Card>
     )
   }
 
   return (
     <div>
-      {workoutDisplay}
+      <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <h2>Lets Get To Work!</h2>
+      </div>
+      <div>
+        {workoutDisplay}
+      </div>
     </div>
   )
 }
