@@ -15,7 +15,7 @@ export const createWorkout = (workout, user) => {
 
 // Index ALL Workouts
 export const indexAllWorkouts = user => {
-  console.log('tic indexAllWorkouts API')
+  // console.log('tic indexAllWorkouts API')
   return axios({
     url: apiUrl + '/workouts',
     method: 'GET',

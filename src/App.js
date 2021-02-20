@@ -20,6 +20,7 @@ import UpdateWorkout from './components/UpdateWorkout/UpdateWorkout'
 import UpperBodyIndex from './components/Category/UpperBodyIndex/UpperBodyIndex'
 import LowerBodyIndex from './components/Category/LowerBodyIndex/LowerBodyIndex'
 import FullBodyIndex from './components/Category/FullBodyIndex/FullBodyIndex'
+import Landing from './components/Landing/Landing'
 import Cardio from './components/Category/Cardio/Cardio'
 import CoreIndex from './components/Category/CoreIndex/CoreIndex'
 import RecoveryIndex from './components/Category/RecoveryIndex/RecoveryIndex'
@@ -72,6 +73,9 @@ class App extends Component {
           )} />
           <Route path='/sign-in' render={() => (
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
+          )} />
+          <Route exact path='/' render={() => (
+            <Landing msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />

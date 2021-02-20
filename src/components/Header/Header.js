@@ -25,13 +25,25 @@ const unauthenticatedOptions = (
   </Fragment>
 )
 
+const unauthenticatedBrand = (
+  <Fragment>
+
+  </Fragment>
+)
+
+const authenticatedBrand = (
+  <Fragment>
+    💪 Fit-Friends 💪
+  </Fragment>
+)
+
 // const alwaysOptions = (
 // )
 
 const Header = ({ user }) => (
   <Navbar bg="primary" variant="dark" sticky="top" expand="md">
     <Navbar.Brand href="#/">
-      💪Fit-Friends!💪
+      { user ? authenticatedBrand : unauthenticatedBrand}
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">

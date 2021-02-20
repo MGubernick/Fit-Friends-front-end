@@ -58,7 +58,7 @@ componentDidMount () {
 
   showWorkout(match.params.id, user)
     .then(res => {
-      console.log('this is res after showWorkout', res)
+      // console.log('this is res after showWorkout', res)
       this.setState({ workout: res.data.workout })
       return res
     })
@@ -89,9 +89,9 @@ render () {
     )
   }
 
-  console.log('this is user before userId set', user)
+  // console.log('this is user before userId set', user)
   const userName = user.user_name
-  console.log('this is workout before authorId set', workout)
+  // console.log('this is workout before authorId set', workout)
   const authorName = workout.author
 
   let workoutDisplay
@@ -101,16 +101,53 @@ render () {
       <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
         <Card key={workout.id}
           className="index-bg"
-          style={{ borderRadius: '12px', boxShadow: ' -.3px .5px 0px .5px grey', display: 'flex', marginLeft: '5px', marginRight: '5px', marginBottom: '20px', padding: '10px', width: '700px' }} >
-          <Card.Title >{workout.title}</Card.Title>
+          style={{ border: '1px solid #d3e427', borderRadius: '12px', boxShadow: ' -.3px .5px 0px .5px grey', display: 'flex', marginLeft: '5px', marginRight: '5px', marginBottom: '20px', padding: '10px', width: '800px' }} >
           <Card.Body className="card-body" style={{ display: 'flex', flexDirection: 'row', overflow: 'auto' }}>
-            <div style={{ margin: '30px' }}>
-              <Card.Title style={{ fontSize: '30px' }}>Author: {workout.author}</Card.Title>
-              <Card.Text style={{ fontStyle: 'italic', fontSize: '15px' }}><small>Category: <strong>{workout.category}</strong></small></Card.Text>
-              <Card.Text style={{ fontStyle: 'italic', fontSize: '15px' }}><small>Difficulty: <strong>{workout.difficulty}</strong></small></Card.Text>
-              <Card.Text style={{ whiteSpace: 'pre-wrap' }}>
-                {workout.description}
-              </Card.Text>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <div style={{ width: '200px' }}>
+                <Card.Title style={{ fontSize: '40px' }}>{workout.title}</Card.Title>
+                <Card.Title style={{ fontStyle: 'italic' }} >Author: {workout.author}</Card.Title>
+                <Card.Text style={{ fontSize: '15px' }}>Category: <strong>{workout.category}</strong></Card.Text>
+                <Card.Text style={{ fontSize: '15px' }}>Difficulty: <strong>{workout.difficulty}</strong></Card.Text>
+                {workout.category === 'Upper Body'
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
+                    <Card.Img src={'https://imgur.com/9LMuOGJ.png'} style={{ height: '100px', width: '100px' }} alt='image of a bicep'/>
+                  </div>
+                  : null }
+                {workout.category === 'Lower Body'
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
+                    <Card.Img src={'https://imgur.com/VKDfplf.png'} style={{ height: '100px', width: '100px' }} alt='image of legs walking up stairs'/>
+                  </div>
+                  : null }
+                {workout.category === 'Cardio'
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
+                    <Card.Img src={'https://imgur.com/BGq99v9.png'} style={{ height: '100px', width: '100px' }} alt='image of a figure running'/>
+                  </div>
+                  : null }
+                {workout.category === 'Core'
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
+                    <Card.Img src={'https://imgur.com/IQoO7qe.png'} style={{ height: '100px', width: '100px' }} alt='image of abs'/>
+                  </div>
+                  : null }
+                {workout.category === 'Full Body'
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
+                    <Card.Img src={'https://imgur.com/1XXJ1zU.png'} style={{ height: '100px', width: '100px' }} alt='image of a figure flexing'/>
+                  </div>
+                  : null }
+                {workout.category === 'Recovery'
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
+                    <Card.Img src={'https://imgur.com/sgWB0ro.png'} style={{ height: '100px', width: '100px' }} alt='image of yoga'/>
+                  </div>
+                  : null }
+              </div>
+              <div>
+                <Card.Text style={{ fontSize: '20px', margin: '30px 30px 10px 30px' }}>Here is how it&apos;s done:</Card.Text>
+                <div style={{ border: '1px solid #d3e427', borderRadius: '9px', margin: '10px 30px 30px 30px', padding: '20px', width: '475px' }}>
+                  <Card.Text style={{ whiteSpace: 'pre-wrap' }}>
+                    {workout.description}
+                  </Card.Text>
+                </div>
+              </div>
             </div>
           </Card.Body>
         </Card>
@@ -123,16 +160,53 @@ render () {
           className="index-bg"
           style={{ border: '1px solid #d3e427', borderRadius: '12px', boxShadow: ' -.3px .5px 0px .5px grey', display: 'flex', marginLeft: '5px', marginRight: '5px', marginBottom: '20px', padding: '10px', width: '800px' }} >
           <Card.Body className="card-body" style={{ display: 'flex', flexDirection: 'row', overflow: 'auto' }}>
-            <div style={{ margin: '30px' }}>
-              <Card.Title style={{ fontSize: '30px' }}>{workout.title}</Card.Title>
-              <Card.Title >Author: {workout.author}</Card.Title>
-              <Card.Text style={{ fontStyle: 'italic', fontSize: '15px' }}><small>Category: <strong>{workout.category}</strong></small></Card.Text>
-              <Card.Text style={{ fontStyle: 'italic', fontSize: '15px' }}><small>Difficulty: <strong>{workout.difficulty}</strong></small></Card.Text>
-              <Card.Text style={{ whiteSpace: 'pre-wrap' }}>
-                {workout.description}
-              </Card.Text>
-              <Button onClick={this.updateWorkoutClicked} style={{ borderColor: '#d3e427' }}>Update</Button>
-              <Button style={{ marginLeft: '10px' }} onClick={this.onDeleteWorkout} variant="secondary">Delete</Button>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <div style={{ width: '200px' }}>
+                <Card.Title style={{ fontSize: '40px' }}>{workout.title}</Card.Title>
+                <Card.Title style={{ fontStyle: 'italic' }}>Author: {workout.author}</Card.Title>
+                <Card.Text style={{ fontSize: '15px' }}>Category: <strong>{workout.category}</strong></Card.Text>
+                <Card.Text style={{ fontSize: '15px' }}>Difficulty: <strong>{workout.difficulty}</strong></Card.Text>
+                <Button onClick={this.updateWorkoutClicked} style={{ borderColor: '#d3e427' }}>Update</Button>
+                <Button style={{ marginLeft: '10px' }} onClick={this.onDeleteWorkout} variant="secondary">Delete</Button>
+                {workout.category === 'Upper Body'
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
+                    <Card.Img src={'https://imgur.com/9LMuOGJ.png'} style={{ height: '100px', width: '100px' }} alt='image of a bicep'/>
+                  </div>
+                  : null }
+                {workout.category === 'Lower Body'
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
+                    <Card.Img src={'https://imgur.com/VKDfplf.png'} style={{ height: '100px', width: '100px' }} alt='image of legs walking up stairs'/>
+                  </div>
+                  : null }
+                {workout.category === 'Cardio'
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
+                    <Card.Img src={'https://imgur.com/BGq99v9.png'} style={{ height: '100px', width: '100px' }} alt='image of a figure running'/>
+                  </div>
+                  : null }
+                {workout.category === 'Core'
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
+                    <Card.Img src={'https://imgur.com/IQoO7qe.png'} style={{ height: '100px', width: '100px' }} alt='image of abs'/>
+                  </div>
+                  : null }
+                {workout.category === 'Full Body'
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
+                    <Card.Img src={'https://imgur.com/1XXJ1zU.png'} style={{ height: '100px', width: '100px' }} alt='image of a figure flexing'/>
+                  </div>
+                  : null }
+                {workout.category === 'Recovery'
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
+                    <Card.Img src={'https://imgur.com/sgWB0ro.png'} style={{ height: '100px', width: '100px' }} alt='image of yoga'/>
+                  </div>
+                  : null }
+              </div>
+              <div>
+                <Card.Text style={{ fontSize: '20px', margin: '30px 30px 0px 30px' }}>Here is how it&apos;s done:</Card.Text>
+                <div style={{ border: '1px solid #d3e427', borderRadius: '9px', margin: '10px 30px 30px 30px', padding: '20px', width: '475px' }}>
+                  <Card.Text style={{ whiteSpace: 'pre-wrap' }}>
+                    {workout.description}
+                  </Card.Text>
+                </div>
+              </div>
             </div>
           </Card.Body>
         </Card>
