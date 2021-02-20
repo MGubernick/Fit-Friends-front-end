@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 
 const config = {
   apiUrl: 'https://type.fit/api/quotes'
@@ -8,34 +8,38 @@ function LandingPage () {
   const [quotes, setQuotes] = useState([])
 
   useEffect(() => {
-    setQuotes([])
+    // setQuotes([])
     fetch(config.apiUrl)
-      .then(function (response) {
-        return response.json()
+      .then(function (res) {
+        return res.json()
       })
-      .then((data) => {
-        setQuotes(data)
+      .then(res => {
+        const randQuote = res[Math.floor(Math.random() * res.length)]
+        return randQuote
       })
-      .catch(console.log('that didn\'t work'))
+      .then(randQuote => {
+        setQuotes(randQuote)
+      })
+      .catch(error => {
+        console.error(error.message)
+      })
   }, [])
 
-  console.log('quotes here:', quotes)
-
-  const randomQuote = quotes[Math.floor(Math.random() * quotes.length)]
-
-  console.log('this is randomQuote', randomQuote)
-
   return (
-    <div style={{ alignContent: 'center', display: 'flex', flexDirection: 'column' }}>
-      <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', marginBottom: '30px' }}>
-        <h1 style={{ fontSize: '50px', marginTop: '50px' }}>Welcome 💪 Fit-Friends 💪!</h1>
-        <p style={{ fontSize: '30px', fontStyle: 'italic' }}>Let&apos;s Get Fit Together!</p>
+    <Fragment>
+      <div className="container">
+        <div style={{ alignContent: 'center', display: 'flex', flexDirection: 'column' }}>
+          <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', marginBottom: '30px' }}>
+            <h1 style={{ fontSize: '50px', marginTop: '50px' }}>Welcome 💪 Fit-Friends 💪!</h1>
+            <p style={{ fontSize: '30px', fontStyle: 'italic' }}>Let&apos;s Get Fit Together!</p>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginTop: '40px' }}>
+            <h1 style={{ color: '#38ed84', fontSize: '40px', fontStyle: 'italic' }}>&apos;&apos;{quotes.text}&apos;&apos;</h1>
+            <p style={{ alignSelf: 'flex-end', color: '#38ed84', fontSize: '15px', fontStyle: 'italic' }}>- {quotes.author}</p>
+          </div>
+        </div>
       </div>
-      {/*  <div>
-        <h1>{quote.text}</h1>
-        <p>{quote.author}</p>
-      </div> */}
-    </div>
+    </Fragment>
   )
 }
 

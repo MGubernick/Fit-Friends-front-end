@@ -110,33 +110,33 @@ render () {
                 <Card.Text style={{ fontSize: '15px' }}>Category: <strong>{workout.category}</strong></Card.Text>
                 <Card.Text style={{ fontSize: '15px' }}>Difficulty: <strong>{workout.difficulty}</strong></Card.Text>
                 {workout.category === 'Upper Body'
-                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
-                    <Card.Img src={'https://imgur.com/9LMuOGJ.png'} style={{ height: '100px', width: '100px' }} alt='image of a bicep'/>
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+                    <Card.Img src={'https://imgur.com/9LMuOGJ.png'} style={{ height: '200px', width: '200px' }} alt='image of a bicep'/>
                   </div>
                   : null }
                 {workout.category === 'Lower Body'
-                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
-                    <Card.Img src={'https://imgur.com/VKDfplf.png'} style={{ height: '100px', width: '100px' }} alt='image of legs walking up stairs'/>
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+                    <Card.Img src={'https://imgur.com/VKDfplf.png'} style={{ height: '200px', width: '200px' }} alt='image of legs walking up stairs'/>
                   </div>
                   : null }
                 {workout.category === 'Cardio'
-                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
-                    <Card.Img src={'https://imgur.com/BGq99v9.png'} style={{ height: '100px', width: '100px' }} alt='image of a figure running'/>
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+                    <Card.Img src={'https://imgur.com/BGq99v9.png'} style={{ height: '200px', width: '200px' }} alt='image of a figure running'/>
                   </div>
                   : null }
                 {workout.category === 'Core'
-                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
-                    <Card.Img src={'https://imgur.com/IQoO7qe.png'} style={{ height: '100px', width: '100px' }} alt='image of abs'/>
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+                    <Card.Img src={'https://imgur.com/IQoO7qe.png'} style={{ height: '200px', width: '200px' }} alt='image of abs'/>
                   </div>
                   : null }
                 {workout.category === 'Full Body'
-                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
-                    <Card.Img src={'https://imgur.com/1XXJ1zU.png'} style={{ height: '100px', width: '100px' }} alt='image of a figure flexing'/>
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+                    <Card.Img src={'https://imgur.com/1XXJ1zU.png'} style={{ height: '200px', width: '200px' }} alt='image of a figure flexing'/>
                   </div>
                   : null }
                 {workout.category === 'Recovery'
-                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
-                    <Card.Img src={'https://imgur.com/sgWB0ro.png'} style={{ height: '100px', width: '100px' }} alt='image of yoga'/>
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+                    <Card.Img src={'https://imgur.com/sgWB0ro.png'} style={{ height: '200px', width: '200px' }} alt='image of yoga'/>
                   </div>
                   : null }
               </div>
@@ -169,33 +169,33 @@ render () {
                 <Button onClick={this.updateWorkoutClicked} style={{ borderColor: '#d3e427' }}>Update</Button>
                 <Button style={{ marginLeft: '10px' }} onClick={this.onDeleteWorkout} variant="secondary">Delete</Button>
                 {workout.category === 'Upper Body'
-                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
-                    <Card.Img src={'https://imgur.com/9LMuOGJ.png'} style={{ height: '100px', width: '100px' }} alt='image of a bicep'/>
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+                    <Card.Img src={'https://imgur.com/9LMuOGJ.png'} style={{ height: '200px', width: '200px' }} alt='image of a bicep'/>
                   </div>
                   : null }
                 {workout.category === 'Lower Body'
-                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
-                    <Card.Img src={'https://imgur.com/VKDfplf.png'} style={{ height: '100px', width: '100px' }} alt='image of legs walking up stairs'/>
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+                    <Card.Img src={'https://imgur.com/VKDfplf.png'} style={{ height: '200px', width: '200px' }} alt='image of legs walking up stairs'/>
                   </div>
                   : null }
                 {workout.category === 'Cardio'
-                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
-                    <Card.Img src={'https://imgur.com/BGq99v9.png'} style={{ height: '100px', width: '100px' }} alt='image of a figure running'/>
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+                    <Card.Img src={'https://imgur.com/BGq99v9.png'} style={{ height: '200px', width: '200px' }} alt='image of a figure running'/>
                   </div>
                   : null }
                 {workout.category === 'Core'
-                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
-                    <Card.Img src={'https://imgur.com/IQoO7qe.png'} style={{ height: '100px', width: '100px' }} alt='image of abs'/>
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+                    <Card.Img src={'https://imgur.com/IQoO7qe.png'} style={{ height: '200px', width: '200px' }} alt='image of abs'/>
                   </div>
                   : null }
                 {workout.category === 'Full Body'
-                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
-                    <Card.Img src={'https://imgur.com/1XXJ1zU.png'} style={{ height: '100px', width: '100px' }} alt='image of a figure flexing'/>
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+                    <Card.Img src={'https://imgur.com/1XXJ1zU.png'} style={{ height: '200px', width: '200px' }} alt='image of a figure flexing'/>
                   </div>
                   : null }
                 {workout.category === 'Recovery'
-                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
-                    <Card.Img src={'https://imgur.com/sgWB0ro.png'} style={{ height: '100px', width: '100px' }} alt='image of yoga'/>
+                  ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
+                    <Card.Img src={'https://imgur.com/sgWB0ro.png'} style={{ height: '200px', width: '200px' }} alt='image of yoga'/>
                   </div>
                   : null }
               </div>
