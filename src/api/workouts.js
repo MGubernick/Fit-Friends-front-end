@@ -26,7 +26,7 @@ export const indexAllWorkouts = user => {
 }
 
 // Index All of My workouts
-export const indexMyWorkouts = user => {
+export const indexMyWorkouts = async (user) => {
   return axios({
     url: apiUrl + '/myworkouts',
     method: 'GET',

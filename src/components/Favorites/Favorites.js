@@ -27,12 +27,12 @@ class Favorites extends Component {
   removeFavorite = (workout, event) => {
     const { user, msgAlert, history } = this.props
     const { favorites } = this.state
-    console.log('this is workout', workout)
+    // console.log('this is workout', workout)
     const favorite = favorites.filter(favorite => {
       return favorite.user.id === user.id && favorite.workout.id === workout.id
     })
-    console.log('favorite', favorite)
-    console.log('this is favorites', this.state.favorites)
+    // console.log('favorite', favorite)
+    // console.log('this is favorites', this.state.favorites)
 
     removeFav(user, favorite[0].id)
       .then(() => msgAlert({
@@ -50,101 +50,95 @@ class Favorites extends Component {
   async componentDidMount () {
     const { user, msgAlert } = this.props
 
-    allFavs(user)
-      .then(res => {
-        this.setState({ favorites: res.data.favorites })
+    try {
+      const res = await indexAllWorkouts(user)
+      const favoriteWorkouts = await res.data.workouts.filter(workout => {
+        return workout.favorites.includes(user.user_name)
       })
-
-    myUser(user)
-      .then(res => {
-        this.setState({ currentUser: res.data.user })
-      })
-
-    indexAllWorkouts(user)
-      .then(res => {
-        const favoriteWorkouts = res.data.workouts.filter(workout => {
-          return workout.favorites.includes(user.user_name)
-        })
-        return favoriteWorkouts
-      })
-      .then(favoriteWorkouts => {
-        this.setState({ workouts: favoriteWorkouts })
-      })
-      .then(() => msgAlert({
+      await this.setState({ workouts: favoriteWorkouts })
+      await this.setState({ loaded: true })
+      msgAlert({
         message: 'Check it out! Here are all of the workouts!',
         variant: 'success'
-      }))
-      .catch(error => {
-        msgAlert({
-          heading: 'Index Of All The Workouts Failed',
-          message: `could not load workouts: ${error.message}`,
-          variant: 'danger'
-        })
       })
+
+      const favs = await allFavs(user)
+      await this.setState({ favorites: favs.data.favorites })
+
+      const cuser = await myUser(user)
+      this.setState({ currentUser: cuser.data.user })
+    } catch (error) {
+      msgAlert({
+        heading: 'Index Of All The Workouts Failed',
+        message: `could not load workouts: ${error.message}`,
+        variant: 'danger'
+      })
+    }
   }
 
   render () {
     let workoutJsx
-    const { workouts } = this.state
+    const { workouts, loaded } = this.state
 
     // console.log('this is workouts', workouts)
-    if (workouts.length === 0) {
+    if (workouts.length === 0 && loaded === true) {
       // return 'Loading...'
       workoutJsx = (
-        <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
-          <h1>Looks like you don&apos;t have any favorites yet...Go check out All Workouts to favorite some!</h1>
+        // <img style={{ width: '80%' }} src="https://media.giphy.com/media/11T6LuIxeHtJJu/giphy.gif" alt="loading gif" />
+        <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', marginTop: '30px' }}>
+          <h4>Looks like you don&apos;t have any favorites yet! Browse our library to find some!</h4>
         </div>
       )
-    }
+    } else {
     // console.log('workouts before map', workouts)
-    workoutJsx = workouts.map(workout => (
-      <Card key={workout.id}
-        onClick={(event) => {
-          this.handleSearchOne(workout.id, event)
-        }}
-        border="primary"
-        className='index-bg' style={{ borderRadius: '12px', height: '250px', margin: '40px', padding: '10px', width: '250px', marginTop: '10px' }}>
-        <Button className="close" style={{ alignSelf: 'flex-end', display: 'flex', height: '12px', width: '12px' }} type="button" onClick={(event) => this.removeFavorite(workout, event)}>
-          X
-        </Button>
-        <Card.Body>
-          <Card.Title>{workout.title}</Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">{workout.author}</Card.Subtitle>
-          <Card.Text>Category: {workout.category}</Card.Text>
-          <Card.Text>Difficulty Level: {workout.difficulty}</Card.Text>
-          {workout.category === 'Upper Body'
-            ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
-              <Card.Img src={'https://imgur.com/9LMuOGJ.png'} style={{ height: '60px', width: '60px' }} alt='image of a bicep'/>
-            </div>
-            : null }
-          {workout.category === 'Lower Body'
-            ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
-              <Card.Img src={'https://imgur.com/VKDfplf.png'} style={{ height: '60px', width: '60px' }} alt='image of legs walking up stairs'/>
-            </div>
-            : null }
-          {workout.category === 'Cardio'
-            ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
-              <Card.Img src={'https://imgur.com/BGq99v9.png'} style={{ height: '60px', width: '60px' }} alt='image of a figure running'/>
-            </div>
-            : null }
-          {workout.category === 'Core'
-            ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
-              <Card.Img src={'https://imgur.com/IQoO7qe.png'} style={{ height: '60px', width: '60px' }} alt='image of abs'/>
-            </div>
-            : null }
-          {workout.category === 'Full Body'
-            ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
-              <Card.Img src={'https://imgur.com/1XXJ1zU.png'} style={{ height: '60px', width: '60px' }} alt='image of a figure flexing'/>
-            </div>
-            : null }
-          {workout.category === 'Recovery'
-            ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
-              <Card.Img src={'https://imgur.com/sgWB0ro.png'} style={{ height: '60px', width: '60px' }} alt='image of yoga'/>
-            </div>
-            : null }
-        </Card.Body>
-      </Card>
-    ))
+      workoutJsx = workouts.map(workout => (
+        <Card key={workout.id}
+          border="primary"
+          className='index-bg' style={{ borderRadius: '12px', height: '250px', margin: '40px', padding: '8px', width: '250px', marginTop: '10px' }}>
+          <Button className="close" style={{ alignContent: 'center', alignSelf: 'flex-end', backgroundColor: '#252525', color: '#d3e427', display: 'flex', fontSize: '15px', height: '25px', justifyContent: 'center', width: '25px', zIndex: '10000' }} type="button" onClick={(event) => this.removeFavorite(workout, event)}>
+            X
+          </Button>
+          <Card.Body onClick={(event) => {
+            this.handleSearchOne(workout.id, event)
+          }}>
+            <Card.Title>{workout.title}</Card.Title>
+            <Card.Subtitle className="mb-2 text-muted">{workout.author}</Card.Subtitle>
+            <Card.Text>Category: {workout.category}</Card.Text>
+            <Card.Text>Difficulty Level: {workout.difficulty}</Card.Text>
+            {workout.category === 'Upper Body'
+              ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
+                <Card.Img src={'https://imgur.com/9LMuOGJ.png'} style={{ height: '60px', width: '60px' }} alt='image of a bicep'/>
+              </div>
+              : null }
+            {workout.category === 'Lower Body'
+              ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
+                <Card.Img src={'https://imgur.com/VKDfplf.png'} style={{ height: '60px', width: '60px' }} alt='image of legs walking up stairs'/>
+              </div>
+              : null }
+            {workout.category === 'Cardio'
+              ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
+                <Card.Img src={'https://imgur.com/BGq99v9.png'} style={{ height: '60px', width: '60px' }} alt='image of a figure running'/>
+              </div>
+              : null }
+            {workout.category === 'Core'
+              ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
+                <Card.Img src={'https://imgur.com/IQoO7qe.png'} style={{ height: '60px', width: '60px' }} alt='image of abs'/>
+              </div>
+              : null }
+            {workout.category === 'Full Body'
+              ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
+                <Card.Img src={'https://imgur.com/1XXJ1zU.png'} style={{ height: '60px', width: '60px' }} alt='image of a figure flexing'/>
+              </div>
+              : null }
+            {workout.category === 'Recovery'
+              ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
+                <Card.Img src={'https://imgur.com/sgWB0ro.png'} style={{ height: '60px', width: '60px' }} alt='image of yoga'/>
+              </div>
+              : null }
+          </Card.Body>
+        </Card>
+      ))
+    }
 
     return (
       <div style={{ alignContent: 'center', display: 'flex', flexDirection: 'column' }}>
@@ -154,7 +148,7 @@ class Favorites extends Component {
         </div>
         <ul>
           <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', margin: '10px', whiteSpace: 'pre-wrap' }}>
-            {workoutJsx.reverse()}
+            {workoutJsx}
           </div>
         </ul>
       </div>

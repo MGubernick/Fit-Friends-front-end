@@ -3,17 +3,65 @@ $secondary: #af0404;
 
 
 @import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Patrick+Hand&family=Saira:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&family=Architects+Daughter&family=Shadows+Into+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans+Condensed:wght@200&display=swap');
 
 $body-bg: #414141;
+$body-bg-2: #505050;
 $modal-bg: #347474;
 $index-bg: #464d54;
+$nav-text: #919191;
 $white: #fff;
 $yellow: #d3e427;
-
+$dark-yellow: #adba2d;
+$font-fam-1: 'Saira', sans-serif;
+$font-fam-2: 'Patrick Hand', cursive;
+$quote-text-1: 'Akaya Kanadaka', cursive;
+$quote-text-2: 'Architects Daughter', cursive;
+$quote-text-3: 'Encode Sans Condensed', sans-serif;
 
 body {
   background-color: $body-bg;
   color: $yellow;
+  font-family: $font-fam-1;
+}
+
+.dropdownitem {
+  background-color: $primary;
+  border-color: $yellow;
+  color: $yellow;
+  &:hover {
+    background-color: $body-bg;
+    color: $yellow;
+  }
+}
+
+.dropdown-menu {
+  background-color: $primary;
+  border-color: $yellow;
+  border-radius: 10px;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  &:hover {
+    color: $dark-yellow;
+  }
+}
+
+.nav-name-custom {
+  color: $nav-text;
+  &:hover {
+    color: $dark-yellow;
+  }
+}
+
+.active {
+  color: $dark-yellow !important;
+}
+
+.quote {
+  font-family: $quote-text-3;
 }
 
 .modal-bg {

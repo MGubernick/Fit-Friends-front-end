@@ -25,13 +25,6 @@ class UpdateWorkout extends Component {
     }
   }
 
-  // handleClose = (event) => {
-  //   const { history } = this.props
-  //   this.setState({ showUpdateModal: false })
-  //
-  //   history.push(`/workouts/${this.props.match.params.id}`)
-  // }
-
   handleChange = event => {
     event.persist()
 
@@ -98,52 +91,3 @@ class UpdateWorkout extends Component {
 }
 
 export default withRouter(UpdateWorkout)
-
-// <Modal show={this.state.showUpdateModal} backdrop="static" keyboard={false} onHide={this.handleClose}>
-//   <Modal.Header style={{ color: '#fff', backgroundColor: '#114b5f' }} closeButton>
-//     <Modal.Title>Update Your Post!</Modal.Title>
-//   </Modal.Header>
-//   <Modal.Body style={{ backgroundColor: '#f3e9d2' }}>
-//     <Form onSubmit={this.handleSubmit}>
-//       <Form.Group controlId="formBasicTitle">
-//         <Form.Label>Title</Form.Label>
-//         <Form.Control
-//           type="text"
-//           name="title"
-//           placeholder="Enter Title"
-//           onChange={this.handleChange}
-//         />
-//       </Form.Group>
-//
-//       <Form.Group controlId="formBasicAuthor">
-//         <Form.Label>Author</Form.Label>
-//         <Form.Control
-//           type="text"
-//           name="author"
-//           placeholder="Author"
-//           onChange={this.handleChange}
-//         />
-//       </Form.Group>
-//
-//       <Form.Group controlId="formBasicContent">
-//         <Form.Label>Content</Form.Label>
-//         <Form.Control
-//           as="textarea"
-//           rows={3}
-//           name="content"
-//           placeholder="Content"
-//           onChange={this.handleChange}
-//         />
-//       </Form.Group>
-//       <Button variant="secondary" onClick={this.handleClose}>
-//         Close
-//       </Button>
-//       <Button
-//         variant="primary"
-//         type="submit"
-//       >
-//         Submit
-//       </Button>
-//     </Form>
-//   </Modal.Body>
-// </Modal>

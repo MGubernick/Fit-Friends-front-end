@@ -2,7 +2,7 @@ import apiUrl from '../apiConfig'
 import axios from 'axios'
 
 // find my user
-export const myUser = (user) => {
+export const myUser = async (user) => {
   return axios({
     url: apiUrl + '/one-user/' + user.id,
     method: 'GET',
@@ -43,7 +43,7 @@ export const removeFav = (user, favId) => {
 }
 
 // get all Favorites
-export const allFavs = (user) => {
+export const allFavs = async (user) => {
   return axios({
     url: apiUrl + '/favorites',
     method: 'GET',

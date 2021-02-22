@@ -31,11 +31,11 @@ function LandingPage () {
         <div style={{ alignContent: 'center', display: 'flex', flexDirection: 'column' }}>
           <div style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center', marginBottom: '30px' }}>
             <h1 style={{ fontSize: '50px', marginTop: '50px' }}>Welcome 💪 Fit-Friends 💪!</h1>
-            <p style={{ fontSize: '30px', fontStyle: 'italic' }}>Let&apos;s Get Fit Together!</p>
+            <p style={{ fontSize: '30px', fontStyle: 'italic' }}>Let&apos;s Stay Fit Together!</p>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginTop: '40px' }}>
-            <h1 style={{ color: '#38ed84', fontSize: '40px', fontStyle: 'italic' }}>&apos;&apos;{quotes.text}&apos;&apos;</h1>
-            <p style={{ alignSelf: 'flex-end', color: '#38ed84', fontSize: '15px', fontStyle: 'italic' }}>- {quotes.author ? quotes.author : 'unknown'}</p>
+            <h1 className="quote" style={{ color: '#28dbf1', fontSize: '40px', fontStyle: 'italic' }}>&apos;&apos;{quotes.text}&apos;&apos;</h1>
+            <p style={{ alignSelf: 'flex-end', color: '#28dbf1', fontSize: '15px', fontStyle: 'italic' }}>- {quotes.author ? quotes.author : 'unknown'}</p>
           </div>
         </div>
       </div>
