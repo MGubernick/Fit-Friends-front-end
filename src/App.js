@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react'
 import { Route } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
+// import { myUser } from './api/favorites'
+
 import AuthenticatedRoute from './components/AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from './components/AutoDismissAlert/AutoDismissAlert'
 import Header from './components/Header/Header'
@@ -21,6 +23,7 @@ import UpperBodyIndex from './components/Category/UpperBodyIndex/UpperBodyIndex'
 import LowerBodyIndex from './components/Category/LowerBodyIndex/LowerBodyIndex'
 import FullBodyIndex from './components/Category/FullBodyIndex/FullBodyIndex'
 import Landing from './components/Landing/Landing'
+import Favorites from './components/Favorites/Favorites'
 import Cardio from './components/Category/Cardio/Cardio'
 import CoreIndex from './components/Category/CoreIndex/CoreIndex'
 import RecoveryIndex from './components/Category/RecoveryIndex/RecoveryIndex'
@@ -75,7 +78,7 @@ class App extends Component {
             <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
           <Route exact path='/' render={() => (
-            <Landing msgAlert={this.msgAlert} setUser={this.setUser} />
+            <Landing msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/sign-out' render={() => (
             <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />
@@ -118,6 +121,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/recovery-workouts' render={() => (
             <RecoveryIndex msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/favorites' render={() => (
+            <Favorites msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>

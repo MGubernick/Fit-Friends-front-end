@@ -35,7 +35,7 @@ function LandingPage () {
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginTop: '40px' }}>
             <h1 style={{ color: '#38ed84', fontSize: '40px', fontStyle: 'italic' }}>&apos;&apos;{quotes.text}&apos;&apos;</h1>
-            <p style={{ alignSelf: 'flex-end', color: '#38ed84', fontSize: '15px', fontStyle: 'italic' }}>- {quotes.author}</p>
+            <p style={{ alignSelf: 'flex-end', color: '#38ed84', fontSize: '15px', fontStyle: 'italic' }}>- {quotes.author ? quotes.author : 'unknown'}</p>
           </div>
         </div>
       </div>

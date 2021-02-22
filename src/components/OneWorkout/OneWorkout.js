@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import { Redirect, withRouter } from 'react-router-dom'
 
 import { showWorkout, deleteWorkout } from '../../api/workouts'
+import { myUser, addFav } from '../../api/favorites'
 
 // import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -19,7 +20,8 @@ class OneWorkout extends Component {
       exists: true,
       deleted: false,
       clickUpdateWorkout: false,
-      rating: ''
+      favorited: false,
+      currentUser: ''
     }
   }
 
@@ -53,12 +55,35 @@ onDeleteWorkout = () => {
     })
 }
 
+addToFavorites = () => {
+  const { user, match, msgAlert } = this.props
+  const { workout, currentUser } = this.state
+
+  addFav(workout, currentUser, user)
+    .then(res => {
+      this.setState({ favorited: true })
+      return res
+    })
+    .then(res => msgAlert({
+      message: `${workout.title} has been added to your favorites!`,
+      variant: 'success'
+    }))
+    .catch(error => msgAlert({
+      message: `Oops, we couldn't add that workout to your favorites because: ${error.message}`,
+      variant: 'danger'
+    }))
+
+  showWorkout(match.params.id, user)
+    .then(res => {
+      this.setState({ workout: res.data.workout })
+    })
+}
+
 componentDidMount () {
   const { user, match, msgAlert } = this.props
 
   showWorkout(match.params.id, user)
     .then(res => {
-      // console.log('this is res after showWorkout', res)
       this.setState({ workout: res.data.workout })
       return res
     })
@@ -72,16 +97,33 @@ componentDidMount () {
         variant: 'danger'
       })
     })
+
+  myUser(user)
+    .then(res => {
+      this.setState({ currentUser: res.data })
+    })
+    .catch(error => {
+      msgAlert({
+        message: `could not load current user becuase of this error: ${error.message}`,
+        variant: 'danger'
+      })
+    })
 }
 
 render () {
-  const { workout, clickUpdateWorkout } = this.state
+  const { workout, clickUpdateWorkout, favorited } = this.state
   // const { msgAlert, user } = this.props
   const { user } = this.props
+  // console.log('this is currentUser at show one', this.state.currentUser)
+  // console.log('this is workout at show one', workout)
 
   if (!workout) {
     return (<img style={{ width: '80%' }} src="https://media.giphy.com/media/11T6LuIxeHtJJu/giphy.gif" alt="loading gif" />)
   }
+
+  // if (!workout) {
+  //   return (<Redirect to={'/browser'} />)
+  // }
 
   if (clickUpdateWorkout) {
     return (
@@ -109,6 +151,7 @@ render () {
                 <Card.Title style={{ fontStyle: 'italic' }} >Author: {workout.author}</Card.Title>
                 <Card.Text style={{ fontSize: '15px' }}>Category: <strong>{workout.category}</strong></Card.Text>
                 <Card.Text style={{ fontSize: '15px' }}>Difficulty: <strong>{workout.difficulty}</strong></Card.Text>
+                {workout.favorites.includes(user.user_name) || favorited ? null : <Button onClick={this.addToFavorites} style={{ backgroundColor: '#d3e427', borderColor: '#000', color: '#000', marginTop: '15px', width: '165px' }}>Add This Workout To Favorites</Button>}
                 {workout.category === 'Upper Body'
                   ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
                     <Card.Img src={'https://imgur.com/9LMuOGJ.png'} style={{ height: '200px', width: '200px' }} alt='image of a bicep'/>
@@ -168,6 +211,7 @@ render () {
                 <Card.Text style={{ fontSize: '15px' }}>Difficulty: <strong>{workout.difficulty}</strong></Card.Text>
                 <Button onClick={this.updateWorkoutClicked} style={{ borderColor: '#d3e427' }}>Update</Button>
                 <Button style={{ marginLeft: '10px' }} onClick={this.onDeleteWorkout} variant="secondary">Delete</Button>
+                {workout.favorites.includes(user.user_name) || favorited ? null : <Button onClick={this.addToFavorites} style={{ backgroundColor: '#d3e427', borderColor: '#000', color: '#000', marginTop: '15px', width: '165px' }}>Add This Workout To Favorites</Button>}
                 {workout.category === 'Upper Body'
                   ? <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center', marginTop: '50px' }}>
                     <Card.Img src={'https://imgur.com/9LMuOGJ.png'} style={{ height: '200px', width: '200px' }} alt='image of a bicep'/>

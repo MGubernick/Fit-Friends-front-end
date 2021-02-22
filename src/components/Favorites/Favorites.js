@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 
+// import { myUser, allFavs } from './../../api/favorites'
+import { myUser, removeFav, allFavs } from './../../api/favorites'
 import { indexAllWorkouts } from './../../api/workouts'
 
-class IndexAll extends Component {
+class Favorites extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      workouts: []
+      workouts: [],
+      currentUser: null,
+      favorites: null
     }
   }
 
@@ -19,15 +24,51 @@ class IndexAll extends Component {
     history.push(`/workouts/${id}`)
   }
 
-  componentDidMount () {
-    const { msgAlert, user } = this.props
-    // console.log('this is user at index', user)
+  removeFavorite = (workout, event) => {
+    const { user, msgAlert, history } = this.props
+    const { favorites } = this.state
+    console.log('this is workout', workout)
+    const favorite = favorites.filter(favorite => {
+      return favorite.user.id === user.id && favorite.workout.id === workout.id
+    })
+    console.log('favorite', favorite)
+    console.log('this is favorites', this.state.favorites)
+
+    removeFav(user, favorite[0].id)
+      .then(() => msgAlert({
+        message: 'Removed from favorites!',
+        variant: 'success'
+      }))
+      .then(() => {
+        history.push('/browser')
+      })
+      .catch(error => msgAlert({
+        message: `Oops, that didn't remove because ${error.message}`
+      }))
+  }
+
+  async componentDidMount () {
+    const { user, msgAlert } = this.props
+
+    allFavs(user)
+      .then(res => {
+        this.setState({ favorites: res.data.favorites })
+      })
+
+    myUser(user)
+      .then(res => {
+        this.setState({ currentUser: res.data.user })
+      })
 
     indexAllWorkouts(user)
       .then(res => {
-        // console.log('This is res at indexAllWorkouts', res)
-        this.setState({ workouts: res.data.workouts })
-        // console.log('This is workouts at indexAllWorkouts', this.state.workouts)
+        const favoriteWorkouts = res.data.workouts.filter(workout => {
+          return workout.favorites.includes(user.user_name)
+        })
+        return favoriteWorkouts
+      })
+      .then(favoriteWorkouts => {
+        this.setState({ workouts: favoriteWorkouts })
       })
       .then(() => msgAlert({
         message: 'Check it out! Here are all of the workouts!',
@@ -44,15 +85,18 @@ class IndexAll extends Component {
 
   render () {
     let workoutJsx
-    // console.log('this is workouts before map: ', this.state.workouts)
     const { workouts } = this.state
+
     // console.log('this is workouts', workouts)
-
-    if (!workouts) {
+    if (workouts.length === 0) {
       // return 'Loading...'
-      workoutJsx = <img style={{ width: '80%' }} src="https://media.giphy.com/media/11T6LuIxeHtJJu/giphy.gif" alt="loading gif" />
+      workoutJsx = (
+        <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
+          <h1>Looks like you don&apos;t have any favorites yet...Go check out All Workouts to favorite some!</h1>
+        </div>
+      )
     }
-
+    // console.log('workouts before map', workouts)
     workoutJsx = workouts.map(workout => (
       <Card key={workout.id}
         onClick={(event) => {
@@ -60,6 +104,9 @@ class IndexAll extends Component {
         }}
         border="primary"
         className='index-bg' style={{ borderRadius: '12px', height: '250px', margin: '40px', padding: '10px', width: '250px', marginTop: '10px' }}>
+        <Button className="close" style={{ alignSelf: 'flex-end', display: 'flex', height: '12px', width: '12px' }} type="button" onClick={(event) => this.removeFavorite(workout, event)}>
+          X
+        </Button>
         <Card.Body>
           <Card.Title>{workout.title}</Card.Title>
           <Card.Subtitle className="mb-2 text-muted">{workout.author}</Card.Subtitle>
@@ -115,4 +162,4 @@ class IndexAll extends Component {
   }
 }
 
-export default withRouter(IndexAll)
+export default withRouter(Favorites)
