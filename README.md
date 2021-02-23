@@ -76,6 +76,10 @@ To use this application you can follow these simple steps:
 - icongram
 - Insperational Quote API
 
+## Unsolved Problems:
+- The problem that I am currently working on the solution for is being able to click on one of the oter users names (when looking at a workouts favorites) and see that user's favorite workouts.
+- The other propblem that I will eventually be working on is the addition of media queries to work on the users experience on a smaller device
+
 ## Screenshot of Application:
 ![screenshot](https://imgur.com/3dGiBRV.png "Screenshot of App")
 

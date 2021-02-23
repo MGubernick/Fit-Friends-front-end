@@ -63,7 +63,7 @@ class MyIndex extends Component {
             this.handleSearchOne(workout.id, event)
           }}
           border="primary"
-          className='index-bg' style={{ borderRadius: '12px', height: '250px', margin: '40px', padding: '8px', width: '250px', marginTop: '10px' }}>
+          className='index-bg' style={{ borderRadius: '12px', height: '270px', margin: '40px', padding: '8px', width: '250px', marginTop: '10px' }}>
           <Card.Body>
             <Card.Title>{workout.title}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">{workout.author}</Card.Subtitle>
