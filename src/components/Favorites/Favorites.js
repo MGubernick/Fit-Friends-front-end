@@ -25,7 +25,8 @@ class Favorites extends Component {
   }
 
   removeFavorite = (workout, event) => {
-    const { user, msgAlert, history } = this.props
+    // const { user, msgAlert, history } = this.props
+    const { user, msgAlert } = this.props
     const { favorites } = this.state
     // console.log('this is workout', workout)
     const favorite = favorites.filter(favorite => {
@@ -40,7 +41,18 @@ class Favorites extends Component {
         variant: 'success'
       }))
       .then(() => {
-        history.push('/browser')
+        // history.push('/browser')
+        indexAllWorkouts(user)
+          .then(res => {
+            const favoriteWorkouts = res.data.workouts.filter(workout => {
+              return workout.favorites.includes(user.user_name)
+            })
+            return favoriteWorkouts
+          })
+          .then(favoriteWorkouts => {
+            this.setState({ workouts: favoriteWorkouts })
+          })
+          .then(this.setState({ loaded: true }))
       })
       .catch(error => msgAlert({
         message: `Oops, that didn't remove because ${error.message}`
@@ -94,7 +106,7 @@ class Favorites extends Component {
       workoutJsx = workouts.map(workout => (
         <Card key={workout.id}
           border="primary"
-          className='index-bg' style={{ borderRadius: '12px', height: '250px', margin: '40px', padding: '8px', width: '250px', marginTop: '10px' }}>
+          className='index-bg' style={{ borderRadius: '12px', height: '270px', margin: '40px', padding: '8px', width: '250px', marginTop: '10px' }}>
           <Button className="close" style={{ alignContent: 'center', alignSelf: 'flex-end', backgroundColor: '#252525', color: '#d3e427', display: 'flex', fontSize: '15px', height: '25px', justifyContent: 'center', width: '25px', zIndex: '10000' }} type="button" onClick={(event) => this.removeFavorite(workout, event)}>
             X
           </Button>
