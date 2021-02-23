@@ -46,7 +46,7 @@ onDeleteWorkout = () => {
       message: 'Deleted the Workout Successfully!',
       variant: 'success'
     }))
-    .then(() => history.push('/index-all'))
+    .then(() => history.push('/browser'))
     .catch(error => {
       msgAlert({
         message: `Failed to delete the workout due to: ${error.message}`,
