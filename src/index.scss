@@ -75,5 +75,6 @@ body {
 .style-card {
   &:hover {
     background-color: $dark-yellow;
+    color: $index-bg;
   }
 }
