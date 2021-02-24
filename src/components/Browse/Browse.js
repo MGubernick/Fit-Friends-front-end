@@ -64,7 +64,7 @@ class BrowseCategory extends Component {
           <Card
             border="primary"
             onClick={this.onUpperBodyClick}
-            className='index-bg' style={{ borderRadius: '12px', borderStyle: 'outset', height: '180px', margin: '40px', padding: '10px', width: '180px', marginTop: '10px' }}>
+            className='index-bg style-card' style={{ borderRadius: '12px', borderStyle: 'outset', height: '180px', margin: '40px', padding: '10px', width: '180px', marginTop: '10px' }}>
             <Card.Body>
               <Card.Title style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>Upper Body</Card.Title>
               <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
@@ -75,7 +75,7 @@ class BrowseCategory extends Component {
           <Card
             border="primary"
             onClick={this.onCardioClick}
-            className='index-bg' style={{ borderRadius: '12px', height: '180px', margin: '40px', padding: '10px', width: '180px', marginTop: '10px' }}>
+            className='index-bg style-card' style={{ borderRadius: '12px', height: '180px', margin: '40px', padding: '10px', width: '180px', marginTop: '10px' }}>
             <Card.Body>
               <Card.Title style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>Cardio</Card.Title>
               <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
@@ -86,7 +86,7 @@ class BrowseCategory extends Component {
           <Card
             border="primary"
             onClick={this.onLowerBodyClick}
-            className='index-bg' style={{ borderRadius: '12px', height: '180px', margin: '40px', padding: '10px', width: '180px', marginTop: '10px' }}>
+            className='index-bg style-card' style={{ borderRadius: '12px', height: '180px', margin: '40px', padding: '10px', width: '180px', marginTop: '10px' }}>
             <Card.Body>
               <Card.Title style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>Lower Body</Card.Title>
               <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
@@ -97,7 +97,7 @@ class BrowseCategory extends Component {
           <Card
             border="primary"
             onClick={this.onCoreClick}
-            className='index-bg' style={{ borderRadius: '12px', height: '180px', margin: '40px', padding: '10px', width: '180px', marginTop: '10px' }}>
+            className='index-bg style-card' style={{ borderRadius: '12px', height: '180px', margin: '40px', padding: '10px', width: '180px', marginTop: '10px' }}>
             <Card.Body>
               <Card.Title style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>Core</Card.Title>
               <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
@@ -108,7 +108,7 @@ class BrowseCategory extends Component {
           <Card
             border="primary"
             onClick={this.onFullBodyClick}
-            className='index-bg' style={{ borderRadius: '12px', height: '180px', margin: '40px', padding: '10px', width: '180px', marginTop: '10px' }}>
+            className='index-bg style-card' style={{ borderRadius: '12px', height: '180px', margin: '40px', padding: '10px', width: '180px', marginTop: '10px' }}>
             <Card.Body>
               <Card.Title style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>Full Body</Card.Title>
               <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>
@@ -119,7 +119,7 @@ class BrowseCategory extends Component {
           <Card
             border="primary"
             onClick={this.onRecoveryClick}
-            className='index-bg' style={{ borderRadius: '12px', height: '180px', margin: '40px', padding: '10px', width: '180px', marginTop: '10px' }}>
+            className='index-bg style-card' style={{ borderRadius: '12px', height: '180px', margin: '40px', padding: '10px', width: '180px', marginTop: '10px' }}>
             <Card.Body>
               <Card.Title style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>Recovery</Card.Title>
               <div style={{ alignContent: 'center', display: 'flex', justifyContent: 'center' }}>

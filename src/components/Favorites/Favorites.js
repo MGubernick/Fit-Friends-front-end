@@ -106,7 +106,7 @@ class Favorites extends Component {
       workoutJsx = workouts.map(workout => (
         <Card key={workout.id}
           border="primary"
-          className='index-bg' style={{ borderRadius: '12px', height: '270px', margin: '40px', padding: '8px', width: '250px', marginTop: '10px' }}>
+          className='index-bg style-card' style={{ borderRadius: '12px', height: '270px', margin: '40px', padding: '8px', width: '250px', marginTop: '10px' }}>
           <Button className="close" style={{ alignContent: 'center', alignSelf: 'flex-end', backgroundColor: '#252525', color: '#d3e427', display: 'flex', fontSize: '15px', height: '25px', justifyContent: 'center', width: '25px', zIndex: '10000' }} type="button" onClick={(event) => this.removeFavorite(workout, event)}>
             X
           </Button>
