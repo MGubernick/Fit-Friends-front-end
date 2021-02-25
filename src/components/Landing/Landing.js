@@ -40,8 +40,8 @@ function LandingPage () {
             <p style={{ alignSelf: 'flex-end', color: '#28dbf1', fontSize: '15px', fontStyle: 'italic' }}>- {quotes.author ? quotes.author : 'unknown'}</p>
           </div>
             : <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginTop: '40px' }}>
-              <h1 className="quote" style={{ color: '#28dbf1', fontSize: '35px', fontStyle: 'italic' }}>The motivational quote hasn&apos;t loaded...But thats ok! We It&apos;s going to be a great day!</h1>
-              <h4 style={{ alignSelf: 'center', color: '#28dbf1', fontSize: '30px', fontStyle: 'italic' }}>Let&apos;s Sign-In and Get Started!</h4>
+              <h1 className="quote" style={{ color: '#28dbf1', fontSize: '35px', fontStyle: 'italic' }}>The motivational quote hasn&apos;t loaded...But thats ok! We are going to have a great day!</h1>
+              <h4 style={{ alignSelf: 'center', color: '#28dbf1', fontSize: '30px', fontStyle: 'italic' }}>Sign-In and Let&apos;s Get Started!</h4>
             </div>
           }
         </div>
