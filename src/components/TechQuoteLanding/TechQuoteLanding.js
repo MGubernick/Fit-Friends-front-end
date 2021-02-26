@@ -15,7 +15,7 @@ class TechQuoteLandingPage extends Component {
   componentDidMount () {
     randoQuote()
       .then(res => {
-        console.log('this is res', res)
+        // console.log('this is res', res)
         this.setState({ randomQuote: res.data.quote, quoteAuthor: res.data.author })
       })
       .catch(error => {
@@ -25,8 +25,8 @@ class TechQuoteLandingPage extends Component {
 
   render () {
     const { randomQuote, quoteAuthor } = this.state
-    console.log('this is randoquote', randomQuote)
-    console.log('this is quoteAuthor', quoteAuthor)
+    // console.log('this is randoquote', randomQuote)
+    // console.log('this is quoteAuthor', quoteAuthor)
 
     return (
       <div style={{ alignContent: 'center', display: 'flex', flexDirection: 'column' }}>
