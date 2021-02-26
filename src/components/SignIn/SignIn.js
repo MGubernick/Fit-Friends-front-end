@@ -65,7 +65,11 @@ class SignIn extends Component {
             keyboard={false}
           >
             <Modal.Header className='modal-bg' closeButton>
-              <Modal.Title>Sign In!</Modal.Title>
+              <div style={{ display: 'flex', flexDirection: 'column' }} >
+                <Modal.Title>Sign In!</Modal.Title>
+                <small>If you do not want to create your an account, please use these credentials:</small>
+                <small>(Email: <strong>te@st.com</strong> Password: <strong>123123</strong>)</small>
+              </div>
             </Modal.Header>
             <Modal.Body className='modal-bg'>
               <Form onSubmit={this.onSignIn}>
