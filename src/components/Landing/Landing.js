@@ -38,7 +38,7 @@ function LandingPage () {
               <small>(Email: <strong>te@st.com</strong> Password: <strong>123123</strong>)</small>
             </div>
           </div>
-          { quotes.lenth !== 0 ? <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginTop: '40px' }}>
+          { quotes.length !== 0 ? <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', marginTop: '40px' }}>
             <h1 className="quote" style={{ color: '#28dbf1', fontSize: '40px', fontStyle: 'italic' }}>&apos;&apos;{quotes.text}&apos;&apos;</h1>
             <p style={{ alignSelf: 'flex-end', color: '#28dbf1', fontSize: '15px', fontStyle: 'italic' }}>- {quotes.author ? quotes.author : 'unknown'}</p>
           </div>
